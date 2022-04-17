@@ -1,0 +1,16 @@
+.DS_Store
+.pytest_cache/
+js_example.egg-info/
+_pycache_/
+.coverage
+venv/
+.venv/
+
+.env
+.flaskenv
+.cache/
+.idea/
+docs/_build/
+.vscode
+.coverage.*
+*,cover
