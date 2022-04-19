@@ -14,6 +14,7 @@ environment {
         stage('Checkout code') { 
             steps {
                 checkout scm
+                git describe --always
             }
             
         }   
@@ -53,7 +54,7 @@ environment {
         stage('Build') { 
             steps {
                 script{
-                    image = docker.build("unittests_master:latest)
+                    image = docker.build("www123vika123/epam:latest)
                 }
             }
         }
