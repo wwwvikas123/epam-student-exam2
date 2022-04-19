@@ -14,7 +14,6 @@ environment {
         stage('Checkout code') { 
             steps {
                 checkout scm
-                git describe --always
             }
             
         }   
@@ -54,15 +53,17 @@ environment {
         stage('Build') { 
             steps {
                 script{
-                    image = docker.build("www123vika123/epam:latest)
+                    image = docker.build("www123vika123/epam:latest")
                 }
             }
         }
         stage('Push') { 
             steps {
-                docker.withRegistry( '', registryCredential ) {
+                script{
+                docker.withRegistry( '', registryCredential )
                 dockerImage.push("$BUILD_NUMBER")
                 dockerImage.push('latest')
+                }
             }
         }
     }        
