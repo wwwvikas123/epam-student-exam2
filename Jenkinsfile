@@ -34,7 +34,8 @@ environment {
             steps {
                 script {
                     image.inside {
-                        sh "pip --no-cache-dir install  -e '.[test]'"
+                        sh "python3 -m venv venv"
+                        sh "python3 -m pip install --no-cache-dir -e '.[test]'"
                         sh "coverage run -m pytest"
                         sh "coverage report"
                     }
