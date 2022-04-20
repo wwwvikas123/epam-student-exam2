@@ -35,8 +35,6 @@ environment {
             steps {
                 script {
                     image.inside {
-                        sh "python3 -m venv venv"
-                        sh ". venv/bin/activate"
                         sh "python3.9 pip install --no-cache-dir -e '.[test]' --user api"
                         sh "coverage run -m pytest"
                         sh "coverage report"
