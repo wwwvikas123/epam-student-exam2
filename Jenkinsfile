@@ -4,6 +4,7 @@ agent {
 }
 environment {
       registryCredential = 'loseva-dockerhub'
+      IMAGE_MANE = 'www123vika123/epam'
     }
     options {
       parallelsAlwaysFailFast()
@@ -20,33 +21,43 @@ environment {
             }
             
         }   
-                                         
-    //    stage('Run unittests') {
-    //        steps {
-    //            script {
-    //                image.inside {
-    //                    sh "pip install -e '.[test]'"
-    //                    sh "coverage run -m pytest"
-    //                    sh "coverage report"
-    //                }
-    //            }
-    //        }
-    //    }                                                                           
+
         stage('Build') { 
             steps {
                 script{
-                    image = docker.build("www123vika123/epam:latest")
+                    image = docker.build("${env.IMAGE_MANE}")
                 }
             }
         }
+
+        stage('Run unittests') {
+            steps {
+                script {
+                    image.inside {
+                        sh "pip install -e '.[test]'"
+                        sh "coverage run -m pytest"
+                        sh "coverage report"
+                    }
+                }
+            }
+        }                                                                           
+
         stage('Push') { 
             steps {
-                script{
-                docker.withRegistry( '', registryCredential )
-                dockerImage.push("$BUILD_NUMBER")
-                dockerImage.push('latest')
+                script {
+                    docker.withRegistry( '', registryCredential )
+                    image.push("${env.BUILD_NUMBER}")
+                    image.push("latest")
                 }
             }
         }
-    }        
-}
+        stage('Cleaning up') {
+            steps{
+                script {
+                    sh "docker rmi $image"
+                }
+            }
+        }    
+    }
+}        
+
