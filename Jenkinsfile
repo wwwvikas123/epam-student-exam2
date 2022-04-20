@@ -34,7 +34,7 @@ environment {
             steps {
                 script {
                     image.inside {
-                        sh "python3.9 -m pip install --no-cache-dir -e '.[test]'"
+                        sh "python3.9 -m pip install --user api --no-cache-dir -e '.[test]'"
                         sh "coverage run -m pytest"
                         sh "coverage report"
                     }
