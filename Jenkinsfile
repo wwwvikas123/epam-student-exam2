@@ -35,7 +35,7 @@ environment {
         stage('Build') { 
             steps {
                 script{
-                    sh "docker build . -t kekek"
+                    image = docker.build("www123vika123/epam:latest")
                 }
             }
         }
