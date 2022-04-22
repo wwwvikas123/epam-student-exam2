@@ -31,18 +31,22 @@ environment {
         }
 
         stage('BuildInside') {
-                 docker.image("${env.IMAGE_MANE}").withRun {c ->
-                    docker.image("${env.IMAGE_MANE}").inside{
-                       /*  Do something here inside container  */
-                       sh "pip install --no-cache-dir -e '.[test]'"
+            steps {
+                script {
+                    docker.image("${env.IMAGE_MANE}").withRun {c ->
+                        docker.image("${env.IMAGE_MANE}").inside{
+                        
+                                    sh "pip install --no-cache-dir -e '.[test]'"
+                        }
                     }
                 }
+            }
         }
 //        stage('Run unittests') {
 //            steps {
 //                script {
 //               //     image.inside {
-//                    docker.image("${env.IMAGE_MANE}").withRun {c ->
+//                          docker.image("${env.IMAGE_MANE}").withRun {c ->
 //                         sh "pip install --no-cache-dir -e '.[test]'"
 //                      //  sh "coverage run -m pytest"
 //                      //  sh "coverage report"
