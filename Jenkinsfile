@@ -3,8 +3,8 @@ agent {
   label 'unittest'
 }
 environment {
-      registryCredential = 'loseva-dockerhub'
-      IMAGE_MANE = 'www123vika123/epam'
+      registryCredential='loseva-dockerhub'
+      IMAGE_MANE='www123vika123/epam'
     }
     options {
       parallelsAlwaysFailFast()
@@ -54,6 +54,14 @@ environment {
 //                }
 //            }
 //        }                                                                           
+
+        stage('Login') {
+
+			steps {
+				sh 'echo $registryCredential | docker login -u $registryCredential --password-stdin'
+			}
+		}
+
 
         stage('Push') { 
             steps {
