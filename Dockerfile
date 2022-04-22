@@ -23,7 +23,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install  -r requirements.txt && \
     chown -R $USER:$USER /usr/src/app && \
     apt install curl -y
-
+ENV USER=$USER
 COPY --chown=$USER:$USER . .
 USER $USER
 EXPOSE 5000
