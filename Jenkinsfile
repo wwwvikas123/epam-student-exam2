@@ -36,7 +36,7 @@ environment {
                     docker.image("${env.IMAGE_MANE}").withRun {c ->
                         docker.image("${env.IMAGE_MANE}").inside{
                         
-                                    sh "python3 pip install --no-cache-dir -e '.[test]' --user api"
+                                    sh "python3 pip install --no-cache-dir -e '.[test]'"
                         }
                     }
                 }
