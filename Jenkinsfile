@@ -36,7 +36,7 @@ environment {
                 script {
                //     image.inside {
                     docker.image("${env.IMAGE_MANE}").withRun {c ->
-                         sh "python3.9 pip install --no-cache-dir -e '.[test]' --user api"
+                         sh "pip install --no-cache-dir -e '.[test]'"
                       //  sh "coverage run -m pytest"
                       //  sh "coverage report"
                     }
