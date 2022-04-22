@@ -3,7 +3,7 @@ agent {
   label 'unittest'
 }
 environment {
-      registryCredential='loseva-dockerhub'
+      registryCredential=credentials('loseva-dockerhub')
       IMAGE_MANE='www123vika123/epam'
     }
     options {
@@ -66,7 +66,7 @@ environment {
         stage('Push') { 
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', registryCredential )
+                //    docker.withRegistry('https://registry.hub.docker.com', registryCredential )
                     image.push("${env.BUILD_NUMBER}")
                     image.push("latest")
                 }
