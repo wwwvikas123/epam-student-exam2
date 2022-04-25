@@ -55,12 +55,12 @@ environment {
 //            }
 //        }                                                                           
 
-        stage('Login') {
-
-			steps {
-				sh 'echo $registryCredential | docker login -u $registryCredential --password-stdin'
-			}
-		}
+//        stage('Login') {
+//
+//			steps {
+//				sh 'echo $registryCredential | docker login -u $registryCredential --password-stdin'
+//			}
+//		}
 
 
         stage('Push') { 
