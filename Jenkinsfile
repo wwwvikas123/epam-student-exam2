@@ -25,7 +25,7 @@ environment {
         stage('Build') { 
             steps {
                 script{
-                    image = docker.build("${env.IMAGE_MANE}")
+                    image = docker.build("${env.IMAGE_MANE}" + ":$BUILD_NUMBER")
                 }
             }
         }

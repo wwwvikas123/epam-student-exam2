@@ -24,6 +24,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     chown -R $USER:$USER /usr/src/app && \
     apt install curl -y
 COPY --chown=api:api . .
+RUN chmod +x /usr/src/app/tests.sh
 #USER $USER
 EXPOSE 5000
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
