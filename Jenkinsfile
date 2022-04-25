@@ -3,7 +3,7 @@ agent {
   label 'unittest'
 }
 environment {
-      registryCredential = credentials('loseva-dockerhub')
+      registryCredential = 'loseva-dockerhub'
       registry = "www123vika123/epam"
     }
     options {
