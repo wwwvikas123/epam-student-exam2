@@ -71,6 +71,7 @@ environment {
                 //    docker.withRegistry('https://registry.hub.docker.com', registryCredential )
                     image.push("${env.BUILD_NUMBER}")
                     image.push("latest")
+                    }
                 }
             }
         }
