@@ -30,18 +30,6 @@ environment {
             }
         }
 
-   //     stage('BuildInside') {
-   //         steps {
-   //             script {
-   //                 docker.image("${env.IMAGE_MANE}").withRun {c ->
-   //                     docker.image("${env.IMAGE_MANE}").inside{
-   //                     
-   //                                 sh "ls -al && pwd && virtualenv .venv && pip install --no-cache-dir -e '.[test]' --user api"
-   //                     }
-   //                 }
-   //             }
-   //         }
-   //     }
         stage('Run unittests') {
             steps {
                 script {
@@ -54,7 +42,6 @@ environment {
                 }
             }
         }                                                                           
-
 
         stage('Push') { 
             steps {
