@@ -66,6 +66,8 @@ environment {
         stage('Push') { 
             steps {
                 script {
+                docker.withRegistry('', registryCredential) {
+                    DocImage.push()
                 //    docker.withRegistry('https://registry.hub.docker.com', registryCredential )
                     image.push("${env.BUILD_NUMBER}")
                     image.push("latest")
