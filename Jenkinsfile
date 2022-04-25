@@ -23,14 +23,16 @@ environment {
         }   
 
         stage('Docker build') {
-            steps { script {
+            steps { 
+                script {
                 echo ">>>>>>>>>> Start Image build <<<<<<<<<<<"
-                 DocImage=docker.build(registry + ":$BUILD_NUMBER", "-f ./Dockerfile")
+                 DocImage=docker.build("www123vika123/epam" + ":$BUILD_NUMBER")
                 }
             }
         }
         stage('Docker push') {
-            steps { script {
+            steps { 
+                script {
                 echo ">>>>>>>>>>!! Start Image push !!<<<<<<<<<<<"
                 docker.withRegistry('', registryCredential) {
                     DocImage.push()
