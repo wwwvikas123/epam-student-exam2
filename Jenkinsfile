@@ -3,8 +3,8 @@ agent {
   label 'unittest'
 }
 environment {
-      registryCredential=credentials('loseva-dockerhub')
-      IMAGE_MANE='www123vika123/epam'
+      registryCredential = credentials('loseva-dockerhub')
+      registry = "www123vika123/epam"
     }
     options {
       parallelsAlwaysFailFast()
@@ -25,7 +25,7 @@ environment {
         stage('Build') { 
             steps {
                 script{
-                    image = docker.build("${env.IMAGE_MANE}" + ":$BUILD_NUMBER")
+                    image = docker.build(registry + ":$BUILD_NUMBER")
                 }
             }
         }
