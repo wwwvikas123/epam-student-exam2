@@ -22,25 +22,66 @@ environment {
             
         }   
 
-        stage('Docker build') {
-            steps { 
-                script {
-                echo ">>>>>>>>>> Start Image build <<<<<<<<<<<"
-                 DocImage=docker.build("www123vika123/epam" + ":$BUILD_NUMBER")
+        stage('Build') { 
+            steps {
+                script{
+                    image = docker.build("${env.IMAGE_MANE}" + ":$BUILD_NUMBER")
                 }
             }
         }
-        stage('Docker push') {
-            steps { 
+
+   //     stage('BuildInside') {
+   //         steps {
+   //             script {
+   //                 docker.image("${env.IMAGE_MANE}").withRun {c ->
+   //                     docker.image("${env.IMAGE_MANE}").inside{
+   //                     
+   //                                 sh "ls -al && pwd && virtualenv .venv && pip install --no-cache-dir -e '.[test]' --user api"
+   //                     }
+   //                 }
+   //             }
+   //         }
+   //     }
+//        stage('Run unittests') {
+//            steps {
+//                script {
+//               //     image.inside {
+//                          docker.image("${env.IMAGE_MANE}").withRun {c ->
+//                         sh "pip install --no-cache-dir -e '.[test]'"
+//                      //  sh "coverage run -m pytest"
+//                      //  sh "coverage report"
+//                    }
+//                }
+//            }
+//        }                                                                           
+
+//        stage('Login') {
+//
+//			steps {
+//				sh 'echo $registryCredential | docker login -u $registryCredential --password-stdin'
+//			}
+//		}
+
+
+        stage('Push') { 
+            steps {
                 script {
-                echo ">>>>>>>>>>!! Start Image push !!<<<<<<<<<<<"
                 docker.withRegistry('', registryCredential) {
-                    DocImage.push()
-                    DocImage.push('latest')
+                    image.push()
+                //    docker.withRegistry('https://registry.hub.docker.com', registryCredential )
+                    image.push("${env.BUILD_NUMBER}")
+                    image.push("latest")
+                    }
                 }
             }
-        } 
         }
+        stage('Cleaning up') {
+            steps{
+                script {
+                    sh "docker rmi $image"
+                }
+            }
+        }    
     }
-}     
+}        
 
