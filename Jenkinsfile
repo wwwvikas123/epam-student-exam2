@@ -4,7 +4,7 @@ agent {
 }
 environment {
       registryCredential = 'loseva-dockerhub'
-      registry = "www123vika123/epam"
+      IMAGE_NAME = "www123vika123/epam"
     }
     options {
       parallelsAlwaysFailFast()
@@ -25,7 +25,7 @@ environment {
         stage('Build') { 
             steps {
                 script{
-                    image = docker.build(registry + ":$BUILD_NUMBER")
+                    image = docker.build("${env.IMAGE_NAME}")
                 }
             }
         }
@@ -55,13 +55,6 @@ environment {
 //            }
 //        }                                                                           
 
-//        stage('Login') {
-//
-//			steps {
-//				sh 'echo $registryCredential | docker login -u $registryCredential --password-stdin'
-//			}
-//		}
-
 
         stage('Push') { 
             steps {
@@ -78,7 +71,7 @@ environment {
         stage('Cleaning up') {
             steps{
                 script {
-                    sh "docker rmi $image"
+                    sh "docker rmi $IMAGE_NAME"
                 }
             }
         }    
