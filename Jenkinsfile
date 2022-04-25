@@ -45,13 +45,11 @@ environment {
         stage('Run unittests') {
             steps {
                 script {
-               //     image.inside {
-                          docker.image("${env.IMAGE_NAME}").withRun {c ->
-                          docker.image("${env.IMAGE_NAME}").inside{
-                                sh "coverage run -m pytest"
-                          }
-                      //  sh "coverage run -m pytest"
-                      //  sh "coverage report"
+                    docker.image("${env.IMAGE_NAME}").withRun {c ->
+                    docker.image("${env.IMAGE_NAME}").inside{
+                          sh "coverage run -m pytest"
+                          sh "coverage report"
+                        }
                     }
                 }
             }
