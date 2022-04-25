@@ -48,7 +48,7 @@ environment {
                //     image.inside {
                           docker.image("${env.IMAGE_NAME}").withRun {c ->
                           docker.image("${env.IMAGE_NAME}").inside{
-                                sh "pip3 install --no-cache-dir -e '.[test]' --user api"
+                                sh "coverage run -m pytest"
                           }
                       //  sh "coverage run -m pytest"
                       //  sh "coverage report"
