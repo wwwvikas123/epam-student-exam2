@@ -25,7 +25,7 @@ environment {
         stage('Docker build') {
             steps { script {
                 echo ">>>>>>>>>> Start Image build <<<<<<<<<<<"
-                 DocImage=docker.build(registry + ":$BUILD_NUMBER", "-f ./dockerfiles/Dockerfile.flask ./dockerfiles")
+                 DocImage=docker.build(registry + ":$BUILD_NUMBER", "-f ./Dockerfile")
                 }
             }
         }
