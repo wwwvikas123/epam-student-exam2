@@ -48,7 +48,7 @@ environment {
                //     image.inside {
                           docker.image("${env.IMAGE_NAME}").withRun {c ->
                           docker.image("${env.IMAGE_NAME}").inside{
-                         sh "pythin3 pip3 install -e '.[test]' --user root"
+                         sh "python3 pip3 install -e '.[test]' --user root"
                           }
                       //  sh "coverage run -m pytest"
                       //  sh "coverage report"
