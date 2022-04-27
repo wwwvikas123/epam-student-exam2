@@ -58,8 +58,9 @@ environment {
             steps{
                 script {
                     sh "docker rmi $IMAGE_NAME"
+                    cleanWs cleanWhenNotBuilt: false, notFailBuild: true
                 }
-            }
+            }   
         }    
     }
 }        
