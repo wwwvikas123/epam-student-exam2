@@ -4,7 +4,7 @@ agent {
 }
 environment {
       registryCredential = 'loseva-dockerhub'
-      IMAGE_NAME = "www123vika123/epam" + env.BRANCH_NAME
+      IMAGE_NAME = "www123vika123/epam" + "${env.BRANCH_NAME}"
     }
     options {
       parallelsAlwaysFailFast()
