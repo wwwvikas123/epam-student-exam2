@@ -54,14 +54,12 @@ environment {
                 }
             }
         }
-        stage('Cleaning up') {
-            steps{
-                script {
-                    sh "docker rmi $IMAGE_NAME"
-                    cleanWs cleanWhenNotBuilt: false, notFailBuild: true
-                }
-            }   
-        }    
     }
-}        
+    post {
+        always {
+           sh "docker rmi $IMAGE_NAME" 
+           cleanWs cleanWhenNotBuilt: true, notFailBuild: true
+        }
+    }
+}      
 
