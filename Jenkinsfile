@@ -4,7 +4,7 @@ agent {
 }
 environment {
       registryCredential = 'loseva-dockerhub'
-      IMAGE_NAME = "www123vika123/epam" + "${GIT_BRANCH.split("/")[1]}"
+      IMAGE_NAME = "www123vika123/epam" + "-${GIT_BRANCH.split("/")[1]}"
     }
     options {
       parallelsAlwaysFailFast()
