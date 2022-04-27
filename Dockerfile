@@ -1,4 +1,4 @@
-FROM python:3.9.6-slim-buster
+FROM python:3.7.13-slim
 
 ENV PYTHONUNBUFFERED=1 \
  PYTHONDONTWRITEBYTECODE=1 \
@@ -8,7 +8,10 @@ ARG USER=api
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    git \
+    git curl \
+    && apt-get autoremove -yqq --purge \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
     && groupadd --gid 2000 $USER \
     && useradd --uid 2000 \
             --gid $USER \
@@ -25,6 +28,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
     apt install curl -y
 COPY --chown=api:api . .
 RUN chmod +x /usr/src/app/tests.sh 
-#USER $USER
-EXPOSE 5000
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+ENV USER=${USER}
+USER $USER
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0" ]
