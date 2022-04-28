@@ -5,6 +5,7 @@ agent {
 environment {
       registryCredential = 'loseva-dockerhub'
       IMAGE_NAME = "www123vika123/epam" + "-${GIT_BRANCH.split("/")[1]}"
+      REPO_NAME = "${GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')}"
     }
     options {
       parallelsAlwaysFailFast()
@@ -61,7 +62,7 @@ environment {
            cleanWs cleanWhenNotBuilt: true, notFailBuild: true
         }
         success {
-           build job: 'ansible_deploy_web', parameters: [string(name: 'MY_PARAM', value: "${WORKSPACE}")]
+           build job: 'ansible_deploy_web', parameters: [string(name: 'CONTAINER_NAME', value: "${env.REPO_NAME}")]
         }
     }
 }      
