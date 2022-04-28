@@ -57,7 +57,7 @@ environment {
     }
     post {
         always {
-           sh "docker rmi $IMAGE_NAME" 
+           //sh "docker rmi $IMAGE_NAME" 
            cleanWs cleanWhenNotBuilt: true, notFailBuild: true
         }
         success {
