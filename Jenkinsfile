@@ -63,7 +63,7 @@ environment {
         }
         success {
            build job: 'ansible_deploy_web', parameters: [string(name: 'CONTAINER_NAME', value: "${env.REPO_NAME}"),
-                                                        string(name: 'CONTAINER_NAME', value: "${env.IMAGE_NAME}"),
+                                                        string(name: 'IMAGE_NAME', value: "${env.IMAGE_NAME}"),
                                                         string(name: 'EXTERNAL_PORT', value: "${env.EXTERNAL_PORT}"),
                                                         string(name: 'EXTERNAL_ADDRESS', value: "${env.EXTERNAL_ADDRESS}"),
                                                         ]
