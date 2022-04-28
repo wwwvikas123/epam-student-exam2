@@ -1,6 +1,7 @@
 JavaScript Ajax Example
 =======================
 
+
 Demonstrates how to post form data and process a JSON response using
 JavaScript. This allows making requests without navigating away from the
 page. Demonstrates using |XMLHttpRequest|_, |fetch|_, and
