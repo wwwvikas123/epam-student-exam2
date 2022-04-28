@@ -4,8 +4,7 @@ agent {
 }
 environment {
       registryCredential = 'loseva-dockerhub'
-      BRANCH =  "-${GIT_BRANCH.split("/")[1]}"
-      IMAGE_NAME = "www123vika123/epam + ${env.BRANCH}"
+      IMAGE_NAME = "www123vika123/epama" + "-${GIT_BRANCH.split("/")[1]}"
       REPO_NAME = "${GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')}"
     }
     options {
